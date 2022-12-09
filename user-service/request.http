@@ -1,0 +1,19 @@
+GET http://localhost:8080/api/movies
+
+###
+GET http://localhost:8080/api/movies/53
+
+###
+
+DELETE http://localhost:8080/api/movies/3
+
+###
+
+POST http://localhost:8080/api/movies
+content-type: application/json
+
+{
+  "title": "Hulk is green",
+  "director": "Miley",
+  "rating": 4.6
+}
