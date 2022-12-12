@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "d3ebf9e4-d531-495f-9f43-bd57bfd8f3ed",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "blockBook",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/author/2/books/4/no",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"author",
+						"2",
+						"books",
+						"4",
+						"no"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBookByProperties",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/searchBook?category=comic&title=Book2&author=user2&price=50&publisher=marvel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"searchBook"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "comic"
+						},
+						{
+							"key": "title",
+							"value": "Book2"
+						},
+						{
+							"key": "author",
+							"value": "user2"
+						},
+						{
+							"key": "price",
+							"value": "50"
+						},
+						{
+							"key": "publisher",
+							"value": "marvel"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get books by authorId",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "SaveBook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY3MDU5OTU1NSwiZXhwIjoxNjcwNjAwMDU1fQ.iqA4yymkVVticIVYqZwD_61XGfT998zKG-LNFh1Z4319IiLqu5AjISvHz5KlCy6q1SFqMuLN2F6xoPPbx-aqwg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/srube/Downloads/hulk.jfif"
+						},
+						{
+							"key": "title",
+							"value": "hulk",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "comic",
+							"type": "default"
+						},
+						{
+							"key": "price",
+							"value": "30",
+							"type": "default"
+						},
+						{
+							"key": "publisher",
+							"value": "marvel",
+							"type": "default"
+						},
+						{
+							"key": "active",
+							"value": "true",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Hulk Smash",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/author/2/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"author",
+						"2",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBook",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"value": null,
+							"type": "file"
+						},
+						{
+							"key": "title",
+							"value": "book2",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "comic",
+							"type": "default"
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "default"
+						},
+						{
+							"key": "publisher",
+							"value": "marvel",
+							"type": "default"
+						},
+						{
+							"key": "active",
+							"value": "true",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "ironman",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/author/2/books/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"author",
+						"2",
+						"books",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"user1\",\r\n    \"password\" : \"test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribe Book",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Subscription",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/readers/user1@gmail.com/books/1_2_/cancel-subscription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"readers",
+						"user1@gmail.com",
+						"books",
+						"1_2_",
+						"cancel-subscription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Subscribed books",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch book by SubID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/readers/user1@gmail.com/books/2_2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"readers",
+						"user1@gmail.com",
+						"books",
+						"2_2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch book content by SubID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/digitalbooks/readers/user1@gmail.com/books/2_2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"readers",
+						"user1@gmail.com",
+						"books",
+						"2_2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
