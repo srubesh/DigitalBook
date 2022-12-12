@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ import com.digitalbooks.service.UserService;
 
 @RestController
 @RequestMapping(value = "/digitalbooks")
+@CrossOrigin
 public class SubscriptionController {
 
 	@Autowired
@@ -116,19 +118,22 @@ public class SubscriptionController {
 		if (subscriptionList.isPresent() && !subscriptionList.get().isEmpty()) {
 
 			for (int i = 0; i < subscriptionList.get().size(); i++) {
-				Long bookId = subscriptionList.get().get(i).getBookId();
+				if(!subscriptionList.get().get(i).isCancelled()) {
+					Long bookId = subscriptionList.get().get(i).getBookId();
 
-				responseBook = restTemplate.getForObject(bookUrl + "/test/" + bookId, BookResponse.class);
+					responseBook = restTemplate.getForObject(bookUrl + "/test/" + bookId, BookResponse.class);
 
-				try {
-					listofBooks.add(responseBook);
-				} catch (Exception ex) {
-					throw new Exception(ex.getMessage());
+					try {
+						listofBooks.add(responseBook);
+					} catch (Exception ex) {
+						throw new Exception(ex.getMessage());
+					}
+					if (responseBook == null) {
+						return ResponseEntity.status(HttpStatus.NOT_FOUND)
+								.body("No book is available for current selection");
+					}
 				}
-				if (responseBook == null) {
-					return ResponseEntity.status(HttpStatus.NOT_FOUND)
-							.body("No book is available for current selection");
-				}
+				
 			}
 
 			return ResponseEntity.ok(listofBooks);

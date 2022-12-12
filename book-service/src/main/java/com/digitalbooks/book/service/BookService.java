@@ -98,6 +98,12 @@ public class BookService {
 		Optional<List<Book>> bookList = bookRepository.searchBook(title, author, date, publisher);
 		return bookList;
 	}
+	
+	public Optional<List<Book>> getBookByAuthorId(int authorId) {
+		Optional<List<Book>> bookList = bookRepository.findByAuthorId(authorId);
+		
+		return bookList;
+	}
 
 	
 	/*

@@ -46,6 +46,19 @@ public class BookController {
 			return  ResponseEntity.badRequest().body(new MessageResponse("Book does not exist!"));
 		}
 	}
+	
+	@GetMapping("/author/{authorId}")
+	public ResponseEntity<?> getBookByAuthorId(@PathVariable int authorId) throws Exception{
+		Optional<List<Book>> bookList = bookService.getBookByAuthorId(authorId);
+		
+		if(bookList.isPresent()) {
+			return ResponseEntity.ok()
+					.body(bookList.get());
+		}
+		else {
+			return  ResponseEntity.badRequest().body(new MessageResponse("Book does not exist!"));
+		}
+	}
 
 	@PostMapping("/author/{author-id}/books")
 //	public ResponseEntity<?> saveBook(@RequestParam("image") MultipartFile file, @ModelAttribute Book book,

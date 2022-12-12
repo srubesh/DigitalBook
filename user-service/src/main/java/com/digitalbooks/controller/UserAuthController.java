@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -212,6 +213,19 @@ public class UserAuthController {
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body(new MessageResponse("User is either not present or user does not have author role"));
+		}
+	}
+	
+	@GetMapping("/author/{authorId}")
+	public ResponseEntity<?> getBookByAuthorId(@PathVariable Long authorId) throws Exception{
+		List<Book> responseBook = restTemplate.getForObject(bookUrl + "/author/" + authorId, List.class);
+		
+		if(!responseBook.isEmpty()) {
+			return ResponseEntity.ok()
+					.body(responseBook);
+		}
+		else {
+			return  ResponseEntity.badRequest().body(new MessageResponse("Book does not exist!"));
 		}
 	}
 
