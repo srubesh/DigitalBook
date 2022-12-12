@@ -3,6 +3,7 @@ package com.digitalbooks.book.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -94,8 +95,8 @@ public class BookService {
 		
 	}
 	
-	public Optional<List<Book>> searchBook(String title, int author, LocalDate date, String publisher){
-		Optional<List<Book>> bookList = bookRepository.searchBook(title, author, date, publisher);
+	public Optional<Set<Book>> searchBook(String title, int author, LocalDate date, String publisher){
+		Optional<Set<Book>> bookList = bookRepository.searchBook(title, author, date, publisher);
 		return bookList;
 	}
 	

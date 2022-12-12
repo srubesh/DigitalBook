@@ -1,0 +1,56 @@
+<br>
+<div class="col-md-12">
+    <div class="card container  d-flex justify-content-center">
+        <form name="myForm"  #myForm="ngForm" novalidate
+            (ngSubmit)="myForm.form.valid ">
+            <div style="text-align: center;">
+                <h4>Search Books</h4>
+            </div>
+            <div class="form-group">
+                <label for="title"> <b>Title</b> </label>
+                <input type="text" class="form-control" name="title" [(ngModel)]="search.title" 
+                    #title="ngModel" />
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="title.errors && title.touched">
+                    Title is required!
+                </div> -->
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="author"> <b>Author</b> </label>
+                <input type="text" class="form-control" name="author" [(ngModel)]="search.author" 
+                    #author="ngModel" />
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="author.errors && myForm.submitted">
+                    Author is required!
+                </div> -->
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="publisher"> <b>Publisher</b> </label>
+                <input type="text" class="form-control" name="publisher" [(ngModel)]="search.publisher" 
+                    #publisher="ngModel" />
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="publisher.errors && myForm.submitted">
+                    Publisher is required!
+                </div> -->
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="releasedDate"> <b>Released Date</b> </label>
+                <input type="date" class="form-control" name="releasedDate" [(ngModel)]="search.releasedDate" 
+                    #releasedDate="ngModel" />
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="releasedDate.errors && myForm.submitted">
+                    Released Date is required!
+                </div> -->
+            </div>
+            <br>
+            <div class="form-group">
+                <a href="/search" class="nav-link" routerLink="searchresult">
+                    <button class="btn btn-primary btn-block float-end" type="button" style="margin-left: 40px;"
+                    (click)="searchBook()">
+                        Search
+                    </button>
+                </a>
+            </div>
+        </form>
+        <br>
+    </div>
+</div>

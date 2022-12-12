@@ -158,9 +158,15 @@ public class BookController {
 	@GetMapping("search")
 	//public ResponseEntity<?> searchBook(@RequestParam String category, @RequestParam String title,@RequestParam String author,
 		//	@RequestParam String price, @RequestParam String publisher){
-	public List<Book> searchBook(@RequestParam String title,@RequestParam String author,
+	public Set<Book> searchBook(@RequestParam String title,@RequestParam String author,
 				@RequestParam String publishedDate, @RequestParam String publisher){
-		Optional<List<Book>> bookList = bookService.searchBook(title,Integer.valueOf(author),LocalDate.parse(publishedDate),publisher);
+		int tempAuthor=0;
+		LocalDate tempPublishedDate = null;
+		if(author!="")
+			tempAuthor = Integer.valueOf(author);
+		if(publishedDate!="")
+			tempPublishedDate = LocalDate.parse(publishedDate);
+		Optional<Set<Book>> bookList = bookService.searchBook(title,tempAuthor,tempPublishedDate,publisher);
 		
 		if(bookList.isPresent()) {
 //			return ResponseEntity.ok()

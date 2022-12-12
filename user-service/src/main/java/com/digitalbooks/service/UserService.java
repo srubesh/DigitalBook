@@ -1,5 +1,7 @@
 package com.digitalbooks.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -62,6 +64,19 @@ public class UserService {
 		Optional<Users> user = repo.findByEmail(email);
 		return user;
 	}
+
+	public List<Users> getAllAuthors() {
+		List<Users> authorList = new ArrayList<Users>();
+		List<Users> userList = repo.findAll();
+		
+		authorList=userList.stream()
+				.filter(user -> user.getRoles().stream().anyMatch(role -> role.getName().equals(ERole.ROLE_AUTHOR)))
+				.collect(Collectors.toList());
+		
+		return authorList;
+	}
+	
+	
 
 
 }

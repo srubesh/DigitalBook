@@ -1,5 +1,6 @@
 package com.digitalbooks.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,6 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 	Optional<Users> findById(Long userId);
 	
 	Optional<Users> findByEmail(String email);
+	
+	List<Users> findAll();
 }

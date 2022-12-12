@@ -1,38 +1,59 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Digital Book Application</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      <li class="nav-item" *ngIf="showAuthorBoard">
-        <a href="/author" class="nav-link" routerLink="allmybooks">ALL BOOKS</a>
-      </li>
-      <li class="nav-item" *ngIf="showReaderBoard">
-        <a href="/reader" class="nav-link" routerLink="subscribedbooks">SUBSCRIBED BOOKS</a>
-      </li>
-      <!-- <li class="nav-item">
+  <nav class="navbar navbar-default navbar-expand navbar-dark bg-primary navbar-fixed-top">
+    <div class="container">
+      <a href="#" class="navbar-brand">
+        <h4>Digital Book Application</h4>
+      </a>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+        <li class="nav-item" *ngIf="!showAuthorBoard">
+          <a href="/searchbook" class="nav-link" routerLink="searchbook">SEARCH BOOK </a>
+        </li>
+        <li class="nav-item" *ngIf="showReaderBoard">
+          <a href="/reader" class="nav-link" routerLink="subscribedbooks">SUBSCRIBED BOOKS</a>
+        </li>
+        <li class="nav-item" *ngIf="showAuthorBoard">
+          <a href="/createbook" class="nav-link" routerLink="createbook"> CREATE BOOK </a>
+        </li>
+        <li class="nav-item" *ngIf="showAuthorBoard">
+          <a href="/author" class="nav-link" routerLink="allmybooks"> ALL BOOKS</a>
+        </li>
+        <!-- <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li> -->
-    </ul>
+      </ul>
 
-    <ul class="navbar-nav ms-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Signup</a>
-      </li>
-    </ul>
+      <ul class="navbar-nav ms-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">
+            <button type="button" class="btn btn-outline-light">
+              Login
+            </button>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">
+            <button type="button" class="btn btn-outline-light">
+              Signup
+            </button>
+          </a>
+        </li>
+      </ul>
 
-    <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username | uppercase }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">Logout</a>
-      </li>
-    </ul>
+      <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link " routerLink="profile">
+            <h4>{{ username | uppercase }}</h4>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">
+            <button type="button" class="btn btn-outline-light">
+              Logout
+            </button>
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <div class="container">

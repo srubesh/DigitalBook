@@ -38,10 +38,10 @@ export class SubscribedBooksComponent  implements OnInit{
 
   }
 
-  unSbscriveBook(bookId : number){
+  unSubscriveBook(bookId : number){
     //console.log(bookId+" "+block);
 
-    this.userService.unSbscriveBook(this.readerEmail,this.readerId+"_"+bookId).subscribe(
+    this.userService.unSubscriveBook(this.readerEmail,this.readerId+"_"+bookId).subscribe(
       data => {
       this.message = data;
       alert(this.message.message);

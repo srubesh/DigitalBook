@@ -13,6 +13,9 @@ import { AllMyBooksComponent } from './all-my-books/all-my-books.component';
 import { ImagePipePipe } from './image-pipe.pipe';
 import { SubscribedBooksComponent } from './subscribed-books/subscribed-books.component';
 import { ReadBookComponent } from './read-book/read-book.component';
+import { SearchBooksComponent } from './search-books/search-books.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { AddBookComponent } from './add-book/add-book.component';
 
 
 
@@ -25,7 +28,10 @@ import { ReadBookComponent } from './read-book/read-book.component';
     AllMyBooksComponent,
     ImagePipePipe,
     SubscribedBooksComponent,
-    ReadBookComponent
+    ReadBookComponent,
+    SearchBooksComponent,
+    SearchResultComponent,
+    AddBookComponent
 
   ],
   imports: [

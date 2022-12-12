@@ -3,6 +3,7 @@ package com.digitalbooks.controller;
 import java.awt.print.Book;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -138,6 +139,21 @@ public class UserAuthController {
 
 		return userService.saveUser(user);
 	}
+	
+	@GetMapping("all/authors")
+	public ResponseEntity<?> getAllAuthors(){
+		//List<Users> authorList = new ArrayList<Users>();
+		List<Users> authorList = userService.getAllAuthors();
+		
+		if(!authorList.isEmpty()) {
+			return ResponseEntity.ok(authorList);
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body(new MessageResponse("Authors not fount"));
+		}
+		
+	}
 
 	@PostMapping("/author/{author-id}/books")
 	public ResponseEntity<?> saveBook(@RequestParam("image") MultipartFile file, @ModelAttribute BookResponse book,
@@ -167,9 +183,9 @@ public class UserAuthController {
 					BookResponse.class);
 
 			if (storedBook != null) {
-				return ResponseEntity.ok("Book saved successfully");
+				return ResponseEntity.ok(new MessageResponse("Book saved successfully"));
 			} else {
-				return ResponseEntity.badRequest().body("Something went wrong");
+				return ResponseEntity.badRequest().body(new MessageResponse("Something went wrong"));
 			}
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)

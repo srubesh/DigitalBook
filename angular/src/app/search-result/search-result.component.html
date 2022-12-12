@@ -1,0 +1,56 @@
+<br>
+<!-- <img [src]='image' /> -->
+<p *ngIf="!isLoggedIn" style="text-align: right; color: red;">**Please Login to subscribe a book</p>
+<ul class="card container" *ngFor="let book of books">
+    <br>
+    <div class="col-md-12">
+        <div class="card bg-light mb-3">
+            <div class="card-header">{{book.title}}</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <img [src]="book.logo | imagePipe" alt="image" style="max-height: 100px;">
+                    </div>
+                    <div class="col">
+                        <p>Category</p>
+                        <h5 class="card-title">{{book.category}}</h5>
+                    </div>
+                    <div class="col">
+                        <p>Publisher</p>
+                        <h5 class="card-title">{{book.publisher}}</h5>
+                    </div>
+                    <div class="col">
+                        <p>Published Date</p>
+                        <h5 class="card-text">{{book.publishedDate}}</h5>
+                    </div>
+                    <div class="col" *ngIf="book.active && isLoggedIn && !isSubscribed(book.id)"
+                        style="padding-top: 20px;">
+                        <!-- <a href="/subscribe" class="nav-link" routerLink="readbook"> -->
+                        <button class="btn btn-outline-dark btn-lg" type="button" style="margin-left: 40px;"
+                        (click) = "subscriveBook(book.id)">
+                            Subscribe
+                        </button>
+                        <!-- </a> -->
+                    </div>
+                    <div class="col" *ngIf="!book.active || !isLoggedIn" style="padding-top: 20px;">
+                        <button class="btn btn-outline-dark btn-lg" type="button" style="margin-left: 40px;"
+                            disabled>Subscribe
+                        </button>
+                    </div>
+                    <div class="col" *ngIf="book.active && isLoggedIn && isSubscribed(book.id)"
+                        style="padding-top: 20px;">
+                        <!-- <a href="/subscribe" class="nav-link" routerLink="readbook"> -->
+                        <button class="btn btn-outline-dark btn-lg" type="button" style="margin-left: 40px;" disabled>
+                            Subscribed
+                        </button>
+                        <!-- </a> -->
+                    </div>
+                    <!-- <div class="col" style="padding-top: 20px;">
+                        <button class="btn btn-outline-dark btn-lg" type="button" style="margin-left: 40px;"
+                            (click)="unSbscriveBook(book.id)">Un&nbsp;Subscribe</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</ul>

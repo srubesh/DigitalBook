@@ -14,6 +14,20 @@ export class UserService {
   //   return this.http.get(API_URL + 'all', { responseType: 'text' });
   // }
 
+  //author/{author-id}/books
+  createBook(image : File, create : any, authorId : number){
+    const formdata : FormData = new FormData();
+    formdata.append('image',image);
+    formdata.append('title',create.title);
+    formdata.append('category',create.category);
+    formdata.append('price',create.price);
+    formdata.append('publisher',create.publisher);
+    formdata.append('active',create.active);
+    formdata.append('content',create.content);
+
+    return this.http.post(API_URL +'author/'+authorId+'/books',formdata, { responseType: 'json' });
+  }
+
   getAllBooks(authorId : number): Observable<any> {
     return this.http.get(API_URL + 'author/'+authorId, { responseType: 'json' });
   }
@@ -28,13 +42,34 @@ export class UserService {
   }
 
   //readers/{email-id}/books/{subscription-id}/cancel-subscription
-  unSbscriveBook(readerEmail : string, subscriptionId : string){
+  unSubscriveBook(readerEmail : string, subscriptionId : string){
     return this.http.put(API_URL + 'readers/'+readerEmail+'/books/'+subscriptionId+"/cancel-subscription", { responseType: 'json' });
   }
+
+  ///{book-id}/subscribe
+  subscribeBook(email : string, bookId : number){
+    return this.http.post(API_URL +bookId+'/subscribe',{
+      bookId,
+      email
+    }, { responseType: 'json' });
+  }
+
 
   //readers/{emailId}/books/{subscription-id}/read
   getBookContent(readerEmail : string, subscriptionId : string){
     return this.http.get(API_URL + 'readers/'+readerEmail+'/books/'+subscriptionId+"/read", { responseType: 'json' });
+  }
+
+  //all/authors
+  // getAllAuthors(): Observable<any> {
+  //   return this.http.get(API_URL + 'all/authors', { responseType: 'json' });
+  // }
+
+  //'searchBook?title=&author=&publishedDate=&publisher='
+  searchBook(searchQuery : any ):  Observable<any> {
+    if(searchQuery === null || searchQuery === undefined)
+      return this.http.get(API_URL + 'searchBook?title=&author=&publishedDate=&publisher=', { responseType: 'json' });
+    return this.http.get(API_URL + searchQuery, { responseType: 'json' });
   }
 
   // getModeratorBoard(): Observable<any> {
