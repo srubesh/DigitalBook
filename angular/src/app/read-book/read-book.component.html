@@ -1,0 +1,28 @@
+<div class="container" *ngIf="books; else loggedOut">
+    <div *ngIf="books.active">
+        <header class="jumbotron">
+            <h5 style="text-align: center;">
+                Read Book
+            </h5>
+        </header>
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    <strong>{{ books.title }}</strong>
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    <strong>Content:</strong>
+                </p>
+                <p>
+                    {{ books.content }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loggedOut>
+    Please login.
+</ng-template>

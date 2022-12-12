@@ -1,0 +1,36 @@
+<!-- <ul *ngFor="let book of books"> -->
+<br>
+<!-- <img [src]='image' /> -->
+<ul class="card container" *ngFor="let book of books">
+    <br>
+    <div class="col-md-12">
+        <div class="card bg-light mb-3">
+            <div class="card-header">{{book.title}}</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <img [src]="book.logo | imagePipe" alt="image" style="max-height: 100px;">  
+                    </div>
+                    <div class="col">
+                        <p>Category</p>
+                        <h5 class="card-title">{{book.category}}</h5>
+                    </div>
+                    <div class="col">
+                        <p>Publisher</p>
+                        <h5 class="card-title">{{book.publisher}}</h5>
+                    </div>
+                    <div class="col">
+                        <p>Published Date</p>
+                        <h5 class="card-text">{{book.publishedDate}}</h5>
+                    </div>
+                    <div class="col" *ngIf = "book.active"  style="padding-top: 20px;">
+                        <button class="btn btn-outline-dark btn-lg" type="button" style="margin-left: 40px;" (click)="blockOrUnBlockBook(book.id,'yes')">Block</button>
+                    </div>
+                    <div class="col" *ngIf = "!book.active"  style="padding-top: 20px;">
+                        <button class="btn btn-outline-dark btn-lg" type="button" style="margin-left: 40px;" (click)="blockOrUnBlockBook(book.id,'no')">Un Block</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ul>

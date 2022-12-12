@@ -1,0 +1,41 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Digital Book Application</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Home </a>
+      </li>
+      <li class="nav-item" *ngIf="showAuthorBoard">
+        <a href="/author" class="nav-link" routerLink="allmybooks">ALL BOOKS</a>
+      </li>
+      <li class="nav-item" *ngIf="showReaderBoard">
+        <a href="/reader" class="nav-link" routerLink="subscribedbooks">SUBSCRIBED BOOKS</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+      </li> -->
+    </ul>
+
+    <ul class="navbar-nav ms-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Signup</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username | uppercase }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
