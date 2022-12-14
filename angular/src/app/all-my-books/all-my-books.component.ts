@@ -54,5 +54,9 @@ export class AllMyBooksComponent implements OnInit {
     );
     
   }
+
+  editBook(bookId : string){
+    sessionStorage.setItem("updateBookId",bookId);
+  }
   
 }

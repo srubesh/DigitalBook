@@ -40,15 +40,16 @@ public class BookService {
 //	
 	public Book getBookById(Long id) {
 		Optional<Book> book = bookRepository.findById(id);
-		
-		return book.get();
+		if(book.isPresent())
+			return book.get();
+		return null;
 	}
 
 	public Book saveBook(Book book){
 		return bookRepository.save(book);
 	}
 	
-	public ResponseEntity<?> updateBook(int authorId, Long bookId, Book book) {
+	public Book updateBook(int authorId, Long bookId, Book book) {
 		Optional<Book> existingBook=  bookRepository.findById(bookId);
 		
 		if(existingBook.isPresent() && authorId == existingBook.get().getAuthorId()) {
@@ -62,12 +63,12 @@ public class BookService {
 			existingBook.get().setCategory(book.getCategory());
 //			bookRepository.save(existingBook.get());
 //			return ResponseEntity.ok().body("Book is updated successfully");
-			return ResponseEntity.ok().body(bookRepository.save(existingBook.get()));
+			return bookRepository.save(existingBook.get());
 	
 		}
 		else {
 //			return ResponseEntity.badRequest().body(new MessageResponse("Book does not exist!"));
-			return ResponseEntity.badRequest().body(null);
+			return null;
             
 		}
 		

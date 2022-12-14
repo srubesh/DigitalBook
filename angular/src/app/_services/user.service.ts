@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/digitalbooks/';
+const API_URL = 'http://localhost:8081/digitalbooks/';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +28,26 @@ export class UserService {
     return this.http.post(API_URL +'author/'+authorId+'/books',formdata, { responseType: 'json' });
   }
 
+  //author/{author-id}/books/{book-id}
+  updateBook(image : File, update : any, authorId : number, bookId:number){
+    const formdata : FormData = new FormData();
+    formdata.append('image',image);
+    formdata.append('title',update.title);
+    formdata.append('category',update.category);
+    formdata.append('price',update.price);
+    formdata.append('publisher',update.publisher);
+    formdata.append('active',update.active);
+    formdata.append('content',update.content);
+
+    return this.http.put(API_URL +'author/'+authorId+'/books/'+bookId,formdata, { responseType: 'json' });
+  }
+
   getAllBooks(authorId : number): Observable<any> {
     return this.http.get(API_URL + 'author/'+authorId, { responseType: 'json' });
+  }
+
+  getBook(bookId : any): Observable<any> {
+    return this.http.get(API_URL + 'test/'+bookId, { responseType: 'json' });
   }
   
   blockOrUnblockBook(authorId : number,bookId : number, block : string){

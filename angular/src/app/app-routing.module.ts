@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { SearchBooksComponent } from './search-books/search-books.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SubscribedBooksComponent } from './subscribed-books/subscribed-books.component';
+import { UpdateBookComponent } from './update-book/update-book.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'subscribedbooks/readbook', component: ReadBookComponent},
   {path: 'searchbook', component: SearchBooksComponent},
   {path: 'searchbook/searchresult', component: SearchResultComponent},
-  {path: 'createbook', component: AddBookComponent}
+  {path: 'createbook', component: AddBookComponent},
+  {path: 'allmybooks/updatebook', component: UpdateBookComponent}
 ];
 
 @NgModule({

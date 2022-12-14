@@ -162,9 +162,9 @@ public class BookController {
 				@RequestParam String publishedDate, @RequestParam String publisher){
 		int tempAuthor=0;
 		LocalDate tempPublishedDate = null;
-		if(author!="")
+		if(!author.equals(""))
 			tempAuthor = Integer.valueOf(author);
-		if(publishedDate!="")
+		if(!publishedDate.equals(""))
 			tempPublishedDate = LocalDate.parse(publishedDate);
 		Optional<Set<Book>> bookList = bookService.searchBook(title,tempAuthor,tempPublishedDate,publisher);
 		

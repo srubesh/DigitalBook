@@ -142,7 +142,7 @@ public class UserAuthController {
 	
 	@GetMapping("all/authors")
 	public ResponseEntity<?> getAllAuthors(){
-		//List<Users> authorList = new ArrayList<Users>();
+		
 		List<Users> authorList = userService.getAllAuthors();
 		
 		if(!authorList.isEmpty()) {
@@ -174,7 +174,7 @@ public class UserAuthController {
 				e.printStackTrace();
 			}
 
-			// book.setLogo(blob);
+			
 			book.setLogo(bytes);
 			book.setAuthorId(authorId);
 			book.setPublishedDate(LocalDate.now());
@@ -213,18 +213,18 @@ public class UserAuthController {
 				e.printStackTrace();
 			}
 
-			// book.setLogo(blob);
+			
 			book.setLogo(bytes);
 			book.setAuthorId(authorId);
-			//book.setPublishedDate(LocalDate.now());
+			
 
 			BookResponse updatedBook = restTemplate.postForObject(bookUrl + "/author/" + authorId + "/books/"+bookId, book,
 					BookResponse.class);
 
-			if (updatedBook.getAuthorId() != null) {
-				return ResponseEntity.ok("Book update successfully");
+			if (updatedBook!= null) {
+				return ResponseEntity.ok(new MessageResponse("Book update successfully"));
 			} else {
-				return ResponseEntity.badRequest().body("Book does not exist!");
+				return ResponseEntity.badRequest().body(new MessageResponse("Book does not exist!"));
 			}
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -234,9 +234,9 @@ public class UserAuthController {
 	
 	@GetMapping("/author/{authorId}")
 	public ResponseEntity<?> getBookByAuthorId(@PathVariable Long authorId) throws Exception{
-		List<Book> responseBook = restTemplate.getForObject(bookUrl + "/author/" + authorId, List.class);
+		List<BookResponse> responseBook = restTemplate.getForObject(bookUrl + "/author/" + authorId, List.class);
 		
-		if(!responseBook.isEmpty()) {
+		if(responseBook!=null && !responseBook.isEmpty()) {
 			return ResponseEntity.ok()
 					.body(responseBook);
 		}
@@ -250,8 +250,7 @@ public class UserAuthController {
 			@RequestParam("author") String author, @RequestParam("publishedDate") String publishedDate,
 			@RequestParam("publisher") String publisher) throws Exception {
 
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		LocalDate date = LocalDate.parse(publishedDate);
+
 		List<BookResponse> responseBookList = null;
 
 		Long authoId = userService.findByUserName(author);
@@ -275,6 +274,12 @@ public class UserAuthController {
 				.getForEntity(bookUrl + "author/" + userId + "/books/" + bookId + "/" + block, MessageResponse.class);
 		return response;
 
+	}
+	
+	@GetMapping("/test/{id}")
+	public ResponseEntity<?> getBookById(@PathVariable Long id) throws Exception{
+		ResponseEntity<BookResponse> responseBook = restTemplate.getForEntity(bookUrl + "test/" + id, BookResponse.class);
+		return responseBook;
 	}
 
 }

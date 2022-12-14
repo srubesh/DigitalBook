@@ -48,8 +48,6 @@ public class SubscriptionController {
 		BookResponse responseBook = null;
 		Users resultUser = null;
 
-		// boolean isUserExist = subscriptionService.checkUserExists(subscribe);
-		// boolean isBookExist = subscriptionService.checkBookExists(bookId);
 		Optional<Users> user = userService.findByEmail(subscribe.getEmail());
 		if (user.isPresent())
 			resultUser = user.get();
@@ -63,8 +61,6 @@ public class SubscriptionController {
 
 		if (responseBook != null) {
 			if (resultUser != null) {
-				// boolean isDuplicate = subscriptionService.checkduplicateSubscription(bookId,
-				// resultUser.getId());
 				Subscription subscription = subscriptionService
 						.fetchSubscriptionByIdForSubscribe( resultUser.getId() + "_" +bookId);
 				if ((subscription == null) || (subscription != null && subscription.isCancelled())) {
@@ -165,7 +161,7 @@ public class SubscriptionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription is not found");
 		}
 
-		if (subscription.getUserId() != resultUser.getId()) {
+		if (subscription.getUserId().equals(resultUser.getId())) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("The user does not have subscription for this book");
 		} else {
@@ -202,7 +198,7 @@ public class SubscriptionController {
 		if (subscription == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription is not found");
 		}
-		if (subscription.getUserId() != resultUser.getId()) {
+		if (subscription.getUserId().equals(resultUser.getId())) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("The user does not have subscription for this book");
 		} else {
@@ -210,7 +206,7 @@ public class SubscriptionController {
 			responseBook = restTemplate.getForObject(bookUrl + "/test/" + subscription.getBookId(),
 					BookResponse.class);
 
-			if (responseBook.getId() == null) {
+			if (responseBook == null || responseBook.getId() == null) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No book is available for current selection");
 			} else if (!responseBook.isActive()) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("This book is blocked");
@@ -246,7 +242,7 @@ public class SubscriptionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription is not found");
 		}
 		
-		if (subscription.getUserId() != resultUser.getId()) {
+		if (subscription.getUserId().equals(resultUser.getId()) ) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("The user does not have subscription for this book");
 		} else {

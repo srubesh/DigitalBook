@@ -1,0 +1,80 @@
+<br>
+<div class="col-md-12">
+    <div class="card container  d-flex justify-content-center">
+        <form name="myForm" *ngIf="isLoggedIn" #myForm="ngForm" novalidate (ngSubmit)="myForm.form.valid && updateBook()">
+            <div style="text-align: center;">
+                <h4>Create Books</h4>
+            </div>
+            <div class="form-group">
+                <label for="title"> <b>Title</b> </label>
+                <input type="text" class="form-control" name="title" [(ngModel)]="update.title" #title="ngModel"
+                    required />
+                <div class="alert alert-danger" role="alert" *ngIf="title.errors && title.touched">
+                    Title is required!
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="category"> <b>Category</b> </label>
+                <input type="text" class="form-control" name="category" [(ngModel)]="update.category"
+                    #category="ngModel" required />
+                <div class="alert alert-danger" role="alert" *ngIf="category.errors && myForm.submitted">
+                    Category is required!
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="image"> <b>Image</b> </label>
+                <input type="file" class="form-control" name="image" required (change)="selectFile($event)"/>
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="image.errors && myForm.submitted">
+                    Image is required!
+                </div> -->
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="price"> <b>Price</b> </label>
+                <input type="number" class="form-control" name="price" [(ngModel)]="update.price" #price="ngModel" 
+                required/>
+                <div class="alert alert-danger" role="alert" *ngIf="price.errors && myForm.submitted">
+                    Price is required!
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="publisher"> <b>Publisher</b> </label>
+                <input type="text" class="form-control" name="publisher" [(ngModel)]="update.publisher"
+                    #publisher="ngModel" required/>
+                <div class="alert alert-danger" role="alert" *ngIf="publisher.errors && myForm.submitted">
+                    Publisher is required!
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="active"> <b>Active</b> </label>
+                <select class="form-control" name="active" [(ngModel)]="update.active" required #active="ngModel">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <div class="alert alert-danger" role="alert" *ngIf="active.errors && myForm.submitted">
+                    Active status is required!
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="content"> <b>Content</b> </label>
+                <input type="text" class="form-control" name="content" [(ngModel)]="update.content"
+                    #content="ngModel" required/>
+                <div class="alert alert-danger" role="alert" *ngIf="content.errors && myForm.submitted">
+                    Content is required!
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <button  class="btn btn-primary btn-block float-end" [disabled]="!selectedFiles" type="submit" style="margin-left: 40px;">
+                    Update Book
+                </button>
+            </div>
+        </form>
+        <br>
+    </div>
+</div>

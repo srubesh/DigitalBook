@@ -16,6 +16,7 @@ import { ReadBookComponent } from './read-book/read-book.component';
 import { SearchBooksComponent } from './search-books/search-books.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { UpdateBookComponent } from './update-book/update-book.component';
 
 
 
@@ -31,7 +32,8 @@ import { AddBookComponent } from './add-book/add-book.component';
     ReadBookComponent,
     SearchBooksComponent,
     SearchResultComponent,
-    AddBookComponent
+    AddBookComponent,
+    UpdateBookComponent
 
   ],
   imports: [
