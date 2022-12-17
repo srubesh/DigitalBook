@@ -161,7 +161,7 @@ public class SubscriptionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription is not found");
 		}
 
-		if (subscription.getUserId().equals(resultUser.getId())) {
+		if (!subscription.getUserId().equals(resultUser.getId())) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("The user does not have subscription for this book");
 		} else {
@@ -198,7 +198,7 @@ public class SubscriptionController {
 		if (subscription == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription is not found");
 		}
-		if (subscription.getUserId().equals(resultUser.getId())) {
+		if (!subscription.getUserId().equals(resultUser.getId())) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("The user does not have subscription for this book");
 		} else {
@@ -242,7 +242,7 @@ public class SubscriptionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription is not found");
 		}
 		
-		if (subscription.getUserId().equals(resultUser.getId()) ) {
+		if (!subscription.getUserId().equals(resultUser.getId()) ) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("The user does not have subscription for this book");
 		} else {
