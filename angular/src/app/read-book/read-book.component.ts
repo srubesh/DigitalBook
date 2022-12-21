@@ -32,11 +32,13 @@ export class ReadBookComponent implements OnInit{
     this.userService.getBookContent(this.readerEmail,this.readerId+"_"+this.bookId).subscribe(
       data => {
       this.books = data;
-      //console.log(this.books);
+      console.log(this.books);
       //this.display(this.books);
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        //this.content = JSON.parse(err.error).message;
+        this.content = err;
+        console.log(this.content);
       }
     );
 

@@ -87,7 +87,7 @@ export class UpdateBookComponent implements OnInit {
           },
           err => {
             console.log(err)
-            this.content = JSON.parse(err.error).message;
+            //this.content = JSON.parse(err.error).message;
           }
         );
       }

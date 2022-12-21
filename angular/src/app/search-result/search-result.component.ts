@@ -50,7 +50,8 @@ export class SearchResultComponent implements OnInit {
         //this.display(this.books);
         },
         err => {
-          this.content = JSON.parse(err.error).message;
+          // this.content = JSON.parse(err.error).message;
+          console.log(err);
         }
       );
   }

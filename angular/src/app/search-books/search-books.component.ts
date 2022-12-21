@@ -42,7 +42,8 @@ export class SearchBooksComponent implements OnInit {
     console.log(this.search.publisher);
     console.log(this.search.releasedDate);
 
-    sessionStorage.setItem("searchQuery",'searchBook?title='+this.search.title+'&author='+this.search.author+'&publishedDate='+this.search.releasedDate+'&publisher='+this.search.publisher);
+    // sessionStorage.setItem("searchQuery",'searchBook?title='+this.search.title+'&author='+this.search.author+'&publishedDate='+this.search.releasedDate+'&publisher='+this.search.publisher);
+    sessionStorage.setItem("searchQuery",'search-book?title='+this.search.title+'&author='+this.search.author+'&publishedDate='+this.search.releasedDate+'&publisher='+this.search.publisher);
   }
 
 }
